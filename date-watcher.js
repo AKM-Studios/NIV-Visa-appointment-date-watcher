@@ -17,11 +17,11 @@ var path = window.location.pathname,
 
 var scrapeInterval = setInterval(function () {
 	$.getJSON('https://ais.usvisa-info.com/en-ca/niv/schedule/' + id + '/appointment/days/94.json?appointments[expedite]=false', function (data) {
-		if(data.length === 0) {
+		if(Object.keys(data).length === 0) {
 		console.log('Not available');
 		}
-		if(data.length > 0) {
-		var earliestDate = new Date(data[0].date);
+		if(Object.keys(data).length > 0) {
+		var earliestDate = new Date(Object.keys(data)[0].date);
 		if (earliestDate.getTime() <= desiredDate.getTime()) {
 			window.alert('Earliest date available: ' + earliestDate.toDateString());
 		} else {
